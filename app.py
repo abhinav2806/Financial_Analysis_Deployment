@@ -37,8 +37,8 @@ st.subheader('All prices are in USD')
 # Get data
 ticker = st.text_input("Enter stock ticker (e.x. Apple is AAPL)", "AAPL")
 
-try:
-    data = yf.download(ticker, start='2018-10-01', end='2023-09-01', progress=False)  
+if st.button("Predict"):
+    data = yf.download(ticker, start='2021-10-01', end='2023-09-01', progress=False)  
     data.reset_index(inplace=True)
 
     # Hyperparameter Tuning
@@ -97,5 +97,5 @@ try:
     st.subheader("Predicted Prices Chart")
     st.altair_chart(predicted_chart)
 
-except Exception as e:
+else:
     st.error("This ticker may not be listed on NYSE. Please enter another ticker.")
